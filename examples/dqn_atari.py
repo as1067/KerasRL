@@ -28,7 +28,7 @@ class AtariProcessor(Processor):
         img = img.resize(INPUT_SHAPE).convert('L')  # resize and convert to grayscale
         processed_observation = np.array(img)
         assert processed_observation.shape == INPUT_SHAPE
-        return processed_observation.astype('uint8')  # saves storage in experience memory
+        return processed_observation.astype('uint8')  # fts storage in experience memory
 
     def process_state_batch(self, batch):
         # We could perform this processing step in `process_observation`. In this case, however,
@@ -41,8 +41,8 @@ class AtariProcessor(Processor):
         return np.clip(reward, -1., 1.)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--mode', choices=['train', 'test'], default='train')
-parser.add_argument('--env-name', type=str, default='BreakoutDeterministic-v4')
+parser.add_argument('--mode', choices=['train', 'test'], default='true')
+parser.add_argument('--env-name', type=str, default='Breakout-v0')
 parser.add_argument('--weights', type=str, default=None)
 args = parser.parse_args()
 
